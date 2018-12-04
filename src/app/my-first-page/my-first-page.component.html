@@ -1,29 +1,67 @@
 <mat-card>
+  <h4>Selectionner une liasse</h4>
+  <mat-select (selectionChange)="onChange()" [(value)]="selected" placeholder="Periode">
+    <mat-option *ngFor="let periode of periodes" [value]="periode.value">
+      {{ periode.viewValue }}
+    </mat-option>
+  </mat-select>
+  <h4>{{selected}}</h4>
+
   <mat-card-content>
-    <mat-grid-list cols="7" rowHeight="1:1">
+    <mat-grid-list cols="9" rowHeight="1:3">
       <mat-grid-tile colspan="1">
         <mat-list>
-          <mat-list-item> </mat-list-item>
-          <mat-list-item> Label 1 </mat-list-item>
-          <mat-list-item> Label 2 </mat-list-item>
-          <mat-list-item> Label 3 </mat-list-item>
-          <mat-list-item> Label 4 </mat-list-item>
+          <mat-list-item
+            style="font-size: 14px; text-decoration: underline; font-weight: bold;"
+            >Hypothèses sportives :</mat-list-item
+          >
+          <mat-list-item>Classement Championnat :</mat-list-item>
+          <mat-list-item>Coupe de la Ligue :</mat-list-item>
+          <mat-list-item>Coupe de France </mat-list-item>
+          <mat-list-item>Coupe d'Europe : UCL</mat-list-item>
+          <mat-list-item>Coupe d'Europe : UEL </mat-list-item>
+          <mat-list-item>Ligue </mat-list-item>
         </mat-list>
       </mat-grid-tile>
-      <mat-grid-tile *ngFor="let tile of tiles" colspan="1">
-        <mat-list>
-          <p style="text-align:center;">{{ tile.text}}</p>
-          <mat-list-item *ngFor="let tc of tile.tileContents">
-            <mat-form-field>
-              <input type="text" matInput [disabled]="tc.color !== 'red'" [style.background]="tc.color" />
-            </mat-form-field>
-          </mat-list-item>
-        </mat-list>
-      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let liasse of liasses" colspan="1">
+          <mat-list>
+            <p style="text-align:center;" class="choset">{{ liasse.Type }}</p>
+            <mat-list-item>
+                <mat-form-field>
+                    <input matInput type="text" [disabled]="liasse.IsDisable" [style.background]="liasse.Color" [(ngModel)]="liasse.Rank" />
+                </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                  <input matInput type="text" [disabled]="liasse.IsDisable" [style.background]="liasse.Color" [(ngModel)]="liasse.CoupeDeLaLigue" />
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                  <input matInput type="text" [disabled]="liasse.IsDisable" [style.background]="liasse.Color" [(ngModel)]="liasse.CoupeDeFrance" />
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                  <input matInput type="text" [disabled]="liasse.IsDisable" [style.background]="liasse.Color" [(ngModel)]="liasse.C1" />
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                  <input matInput type="text" [disabled]="liasse.IsDisable" [style.background]="liasse.Color" [(ngModel)]="liasse.C3" />
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-form-field>
+                  <input matInput type="text" [disabled]="liasse.IsDisable" [style.background]="liasse.Color" [(ngModel)]="liasse.Championship" />
+              </mat-form-field>
+            </mat-list-item>          
+          </mat-list>
+        </mat-grid-tile>
     </mat-grid-list>
   </mat-card-content>
   <mat-card-actions>
     <button style="float: right;" mat-raised-button>Annuler</button>
-    <button  mat-raised-button color="primary">Enregistrer</button>
+    <button mat-raised-button color="primary" (click)="onClick()">Enregistrer</button>
   </mat-card-actions>
 </mat-card>
