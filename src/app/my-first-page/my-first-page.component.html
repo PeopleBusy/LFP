@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-content>
+    <mat-grid-list cols="7" rowHeight="1:1">
+      <mat-grid-tile colspan="1">
+        <mat-list>
+          <mat-list-item> </mat-list-item>
+          <mat-list-item> Label 1 </mat-list-item>
+          <mat-list-item> Label 2 </mat-list-item>
+          <mat-list-item> Label 3 </mat-list-item>
+          <mat-list-item> Label 4 </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let tile of tiles" colspan="1">
+        <mat-list>
+          <p style="text-align:center;">{{ tile.text}}</p>
+          <mat-list-item *ngFor="let tc of tile.tileContents">
+            <mat-form-field>
+              <input type="text" matInput [disabled]="tc.color !== 'red'" [style.background]="tc.color" />
+            </mat-form-field>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button style="float: right;" mat-raised-button>Annuler</button>
+    <button  mat-raised-button color="primary">Enregistrer</button>
+  </mat-card-actions>
+</mat-card>
