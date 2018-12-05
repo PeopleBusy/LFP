@@ -1,10 +1,24 @@
-<!-- <h2 mat-dialog-title>My dialog title</h2>
+<h2 mat-dialog-title>{{title}}</h2>
 
-<mat-dialog-content>
-  <p>My dialog content...</p>
+<mat-dialog-content [formGroup]="form" class="example-container">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Nom et prénom(s) du joueur" formControlName="name"/>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput placeholder="Numéro du joueur" formControlName="playerNumber"/>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" matInput placeholder="Nombre de mois" formControlName="nbMonth"/>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" matInput placeholder="Salaire" formControlName="salary"/>
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" matInput placeholder="Prime" formControlName="prime"/>
+    </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="mat-raised-button"(click)="close()">Fermer</button>
-    <button class="mat-raised-button mat-primary"(click)="save()">Enregistrer</button>
-</mat-dialog-actions> -->
+    <button [disabled]="!form.valid" class="mat-raised-button mat-primary"(click)="add()">{{ btnTitle }}</button>
+    <button class="mat-raised-button" mat-dialog-close>Annuler</button>   
+</mat-dialog-actions>
